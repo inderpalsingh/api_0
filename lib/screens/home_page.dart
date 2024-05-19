@@ -29,14 +29,17 @@ class _HomePageState extends State<HomePage> {
   
   @override
   Widget build(BuildContext context) {
+    print(mainData);
     return Scaffold(
       appBar: AppBar(title: const Text('Api')),
       body: mainData != null
           ?  ListView.builder(
-        itemCount: 10,
+        itemCount: mainData!.posts!.length,
           itemBuilder: (context, index) {
             return ListTile(
-              title: Text('${mainData!.posts![index].title}')
+              leading: CircleAvatar(child: Text('${mainData!.posts![index].id}')),
+              title: Text('${mainData!.posts![index].title}',style: TextStyle(fontSize: 20),),
+              subtitle: Text('${mainData!.posts![index].body}'),
             );
           },
       ): const Center(child: Text('No posts')),
